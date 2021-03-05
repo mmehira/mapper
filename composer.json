@@ -1,0 +1,27 @@
+{
+    "name": "mehira/simple-mapper",
+    "description": "Mapper For PostgreSQL",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^7.4.0",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "ext-pdo": "*",
+        "ext-json": "*",
+        "symfony/property-access": "^5.0",
+        "symfony/property-info": "^5.0",
+        "symfony/serializer": "^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "SimpleMapper\\": "src"
+        }
+    }
+}
