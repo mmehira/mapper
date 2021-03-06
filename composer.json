@@ -4,7 +4,7 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": "^7.4.0",
+        "php": ">=7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-pdo": "*",
