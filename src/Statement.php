@@ -130,6 +130,11 @@ final class Statement implements StatementInterface, \Countable
         return $this;
     }
 
+    public function getParameters(): array
+    {
+        return $this->parameters;
+    }
+
     /**
      * @inheritdoc
      */
@@ -171,6 +176,12 @@ final class Statement implements StatementInterface, \Countable
         ];
 
         return $this;
+    }
+
+    public function getSql(): string
+    {
+        $this->compile();
+        return $this->compiledSql;
     }
 
     /**
@@ -225,7 +236,7 @@ SQL;
     /**
      * @inheritdoc
      */
-    public function fetchAll(): array
+    public function fetchAll($fetchStyle = \PDO::FETCH_COLUMN, $fetchArgument = null , array $ctorArgs = [] ): array
     {
         if (!$this->itWasExecuted) {
             throw new StatementExecutionNotRanException(self::YOU_SHOULD_RUN_EXECUTE_METHOD_FIRST);
@@ -234,7 +245,7 @@ SQL;
         //TODO Add cache
         $result = [];
 
-        $rows = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
+        $rows = $this->statement->fetchAll($fetchStyle, $fetchArgument, $ctorArgs);
 
         if ($rows === false) {
             throw new PostgresError($this->statement->errorInfo());
@@ -379,10 +390,9 @@ SQL;
 
     /**
      * @param $row
-     * @return array
      * @throws \Exception
      */
-    private function extractValueFromRow($row): array
+    private function extractValueFromRow($row)
     {
         if (isset($row['row_to_json']) && ($r = json_decode($row['row_to_json'], true)) !== false) {
             $row = $r;
