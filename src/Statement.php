@@ -236,7 +236,7 @@ SQL;
     /**
      * @inheritdoc
      */
-    public function fetchAll($fetchStyle = \PDO::FETCH_COLUMN, $fetchArgument = null , array $ctorArgs = [] ): array
+    public function fetchAll($fetchStyle = \PDO::FETCH_ASSOC): array
     {
         if (!$this->itWasExecuted) {
             throw new StatementExecutionNotRanException(self::YOU_SHOULD_RUN_EXECUTE_METHOD_FIRST);

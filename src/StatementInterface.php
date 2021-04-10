@@ -107,7 +107,7 @@ interface StatementInterface
      * Fetch all values
      * @return array
      */
-    public function fetchAll($fetchStyle = \PDO::FETCH_COLUMN, $fetchArgument = null , array $ctorArgs = [] ): array;
+    public function fetchAll($fetchStyle = \PDO::FETCH_ASSOC): array;
 
     /**
      * Fetch only one column. The output will be typed depending of the item wanted.
