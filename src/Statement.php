@@ -245,7 +245,7 @@ SQL;
         //TODO Add cache
         $result = [];
 
-        $rows = $this->statement->fetchAll($fetchStyle, $fetchArgument, $ctorArgs);
+        $rows = $this->statement->fetchAll($fetchStyle);
 
         if ($rows === false) {
             throw new PostgresError($this->statement->errorInfo());
